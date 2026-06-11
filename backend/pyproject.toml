@@ -1,0 +1,15 @@
+[project]
+name = "auth-learning-backend"
+version = "0.1.0"
+description = "Full-stack auth demo — password hashing, JWTs, access/refresh token pattern"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.29.0",
+    "sqlalchemy>=2.0.0",
+    "argon2-cffi>=23.1.0",
+    "pyjwt>=2.8.0",
+    "pydantic[email]>=2.7.0",
+    "pydantic-settings>=2.3.0",
+]
+
