@@ -101,6 +101,23 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('refreshToken')
   }, [])
 
+  // Called by OAuthCallback after the backend redirects back with tokens in
+  // the URL fragment.  Mirrors what login() does after receiving tokens from
+  // the password endpoint — the rest of the app doesn't know the difference.
+  const loginWithTokens = useCallback(async (accessTkn, refreshTkn) => {
+    setAccessToken(accessTkn)
+    accessTokenRef.current = accessTkn
+    localStorage.setItem('refreshToken', refreshTkn)
+
+    const meRes = await fetch('http://localhost:8000/auth/me', {
+      headers: { Authorization: `Bearer ${accessTkn}` },
+    })
+    if (!meRes.ok) throw new Error('Failed to fetch user profile after OAuth login')
+    const me = await meRes.json()
+    setUser(me)
+    return me
+  }, [])
+
   // Called by ProtectedRoute on page load when React state has been reset
   // (refresh) but a stored refresh token may still be valid.
   const recoverSession = useCallback(async () => {
@@ -132,7 +149,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, accessToken, login, logout, register, recoverSession }}
+      value={{ user, accessToken, login, logout, register, recoverSession, loginWithTokens }}
     >
       {children}
     </AuthContext.Provider>

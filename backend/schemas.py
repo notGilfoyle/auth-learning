@@ -25,6 +25,7 @@ class UserLogin(BaseModel):
 class UserOut(BaseModel):
     id: int
     email: str
+    auth_provider: str = "local"
 
     model_config = {"from_attributes": True}
 

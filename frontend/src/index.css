@@ -375,6 +375,72 @@ input:focus {
 }
 
 /* -----------------------------------------------------------------------
+   Divider
+   ----------------------------------------------------------------------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--text-muted);
+  font-size: .8rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* -----------------------------------------------------------------------
+   Google sign-in button
+   ----------------------------------------------------------------------- */
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .625rem;
+  padding: .625rem 1.25rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: .95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s, box-shadow .15s;
+  width: 100%;
+}
+
+.btn-google:hover {
+  background: var(--surface-2);
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+/* -----------------------------------------------------------------------
+   Auth provider badge (dashboard)
+   ----------------------------------------------------------------------- */
+.provider-badge {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+}
+
+.provider-local {
+  background: rgba(79,70,229,.1);
+  color: var(--primary);
+}
+
+.provider-google {
+  background: rgba(66,133,244,.12);
+  color: #1a73e8;
+}
+
+/* -----------------------------------------------------------------------
    Inline code
    ----------------------------------------------------------------------- */
 code {

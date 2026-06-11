@@ -108,6 +108,12 @@ export default function Dashboard() {
             <dd>{user?.id}</dd>
             <dt>Email</dt>
             <dd>{user?.email}</dd>
+            <dt>Signed in via</dt>
+            <dd>
+              <span className={`provider-badge provider-${user?.auth_provider}`}>
+                {user?.auth_provider === 'google' ? 'Google OAuth' : 'Email / password'}
+              </span>
+            </dd>
           </dl>
         </section>
 

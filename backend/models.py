@@ -9,8 +9,21 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
-    # We store only the Argon2 hash, never the plaintext password.
-    hashed_password: Mapped[str] = mapped_column(String(1024), nullable=False)
+    # Nullable: Google-authenticated users have no password.
+    # Local (email/password) users always have a non-null hash.
+    hashed_password: Mapped[str | None] = mapped_column(String(1024), nullable=True)
+    # "local" = email/password login; "google" = created via Google OAuth.
+    # A user whose account was created locally but later signs in with Google
+    # keeps auth_provider="local"; we just link their google_sub.
+    auth_provider: Mapped[str] = mapped_column(
+        String(32), nullable=False, default="local"
+    )
+    # Google's stable identifier for the user (the 'sub' claim in the ID token).
+    # Stored so we can recognise a returning Google user without relying solely
+    # on email (which users can change on Google's side).
+    google_sub: Mapped[str | None] = mapped_column(
+        String(256), nullable=True, unique=True, index=True
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
 
