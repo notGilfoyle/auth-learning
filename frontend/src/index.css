@@ -2,26 +2,26 @@
    Design tokens
    ----------------------------------------------------------------------- */
 :root {
-  --bg: #f4f5f7;
-  --surface: #ffffff;
-  --surface-2: #f8f9fb;
-  --border: #e2e5ea;
-  --text: #1a1d23;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #f0f0f0;
   --text-muted: #6b7280;
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
+  --primary: #6366f1;
+  --primary-hover: #818cf8;
   --primary-text: #ffffff;
-  --danger: #dc2626;
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
-  --success: #16a34a;
-  --success-bg: #f0fdf4;
-  --success-border: #bbf7d0;
-  --warning: #d97706;
-  --warning-bg: #fffbeb;
-  --warning-border: #fde68a;
+  --danger: #f87171;
+  --danger-bg: rgba(248,113,113,.08);
+  --danger-border: rgba(248,113,113,.25);
+  --success: #4ade80;
+  --success-bg: rgba(74,222,128,.08);
+  --success-border: rgba(74,222,128,.25);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251,191,36,.08);
+  --warning-border: rgba(251,191,36,.25);
   --radius: 10px;
-  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+  --shadow: 0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: "SF Mono", "Fira Code", "Cascadia Code", monospace;
 }
@@ -92,7 +92,14 @@ input[type="text"] {
 input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+  box-shadow: 0 0 0 3px rgba(99,102,241,.2);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset;
+  -webkit-text-fill-color: #f0f0f0;
+  caret-color: #f0f0f0;
 }
 
 .auth-footer {
@@ -212,7 +219,7 @@ input:focus {
   font-weight: 600;
   letter-spacing: .04em;
   text-transform: uppercase;
-  background: rgba(79,70,229,.1);
+  background: rgba(99,102,241,.15);
   color: var(--primary);
   border-radius: 4px;
   padding: .15rem .5rem;
@@ -416,7 +423,7 @@ input:focus {
 
 .btn-google:hover {
   background: var(--surface-2);
-  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  box-shadow: 0 1px 4px rgba(0,0,0,.4);
 }
 
 /* -----------------------------------------------------------------------
@@ -431,13 +438,13 @@ input:focus {
 }
 
 .provider-local {
-  background: rgba(79,70,229,.1);
+  background: rgba(99,102,241,.15);
   color: var(--primary);
 }
 
 .provider-google {
-  background: rgba(66,133,244,.12);
-  color: #1a73e8;
+  background: rgba(66,133,244,.15);
+  color: #60a5fa;
 }
 
 /* -----------------------------------------------------------------------
